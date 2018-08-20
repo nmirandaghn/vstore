@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'bootstrap-sass'
 gem 'solidus'
 gem 'solidus_auth_devise'
 gem 'solidus_i18n', '~> 2.0'
