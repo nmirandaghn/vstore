@@ -4,7 +4,7 @@
   <%#= render :partial => 'spree/shared/main_nav_bar' if store_menu? %>
 </header> -->
 
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -14,7 +14,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <!--
       <figure id="logo" class="columns six" data-hook><%= logo img_options: { class: 'img-responsive', width: '138' } %></figure>
+      -->
+      <%= link_to 'VStore', spree.root_path, class: "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,7 +32,23 @@
           </li>
         <% end %>
       </ul>
+      <div class='nav navbar-nav navbar-right'>
+        <% if spree_current_user %>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to Spree.t(:my_account), spree.account_path %></li>
+                <li><%= link_to Spree.t(:logout), spree.logout_path %></li>
+              </ul>
+            </li>
+          </ul>
+        <% else %>
+          <p class="navbar-text navbar-right"><%= link_to Spree.t(:login), spree.login_path %></p>
+        <% end %>
+      </div>
       <ul class='nav navbar-nav navbar-right'>
+        <li><a href="#">Inbox <span class="badge">1</span></a></li>
         <li id="link-to-cart" data-hook>
           <noscript>
             <%= link_to Spree.t(:cart), '/cart' %>
