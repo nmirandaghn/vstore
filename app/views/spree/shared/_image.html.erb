@@ -1,0 +1,12 @@
+<% size ||= :mini %>
+<% itemprop ||= nil %>
+
+<% if image && image.attachment? %>
+  <% if itemprop %>
+    <%= image_tag image.attachment(size), itemprop: itemprop, class: 'img-hover' %>
+  <% else %>
+    <%= image_tag image.attachment(size), class: 'img-hover' %>
+  <% end %>
+<% else %>
+  <span class="image-placeholder <%= size %> img-hover"></span>
+<% end %>
