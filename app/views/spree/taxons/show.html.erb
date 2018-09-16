@@ -1,0 +1,26 @@
+<section class="newproduct bgwhite p-t-45 p-b-105">
+  <div class='row'>
+    <div class='sec-title p-b-60'>
+      <h1 class="m-text5 t-center" itemprop="name"><%= @taxon.name %></h1>
+    </div>
+  </div>
+
+  <% content_for :sidebar do %>
+    <div data-hook="taxon_sidebar_navigation">
+      <%= render partial: 'spree/shared/taxonomies' %>
+      <%= render partial: 'spree/shared/filters' if @taxon.children.empty? %>
+    </div>
+  <% end %>
+
+  <div data-hook="taxon_products">
+    <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
+  </div>
+
+  <% unless params[:keywords].present? %>
+    <div data-hook="taxon_children">
+      <% cache [I18n.locale, @taxon] do %>
+        <%= render partial: 'taxon', collection: @taxon.children %>
+      <% end %>
+    </div>
+  <% end %>
+</section>
