@@ -1,12 +1,10 @@
-<section class="newproduct bgwhite p-t-45 p-b-105">
-  <div class="sec-title p-b-60">
-    <h3 class="m-text5 t-center">
-      Featured Products
-    </h3>
-  </div>
-  <div data-hook="homepage_products">
-    <% cache(cache_key_for_products) do %>
-      <%= render :partial => 'spree/shared/products', :locals => { :products => @products } %>
-    <% end %>
-  </div>
-</section>
+<div class="sec-title p-b-60">
+  <h3 class="m-text5 t-center">
+    Featured Products
+  </h3>
+</div>
+<div data-hook="homepage_products">
+  <% cache(cache_key_for_products) do %>
+    <%= render :partial => 'spree/shared/products', :locals => { :products => @products } %>
+  <% end %>
+</div>

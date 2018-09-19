@@ -40,8 +40,10 @@
     <%#= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
 
     <div id="content" class="columns <%= !content_for?(:sidebar) ? "sixteen" : "twelve omega" %>" data-hook>
+			<section class="newproduct bgwhite p-t-45 p-b-105">
       <%= flash_messages %>
       <%= yield %>
+			</section>
     </div>
 
     <%= yield :templates %>
