@@ -32,6 +32,7 @@
 			</div>
   <%= render :partial => 'spree/shared/header' %>
 </header>
+<%= flash_messages %>
 <div class="container">
   <div id="wrapper" class="row" data-hook>
 
@@ -39,10 +40,9 @@
 
     <%#= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
 
-    <div id="content" class="columns <%= !content_for?(:sidebar) ? "sixteen" : "twelve omega" %>" data-hook>
-			<section class="newproduct bgwhite p-t-45 p-b-105">
-      <%= flash_messages %>
-      <%= yield %>
+		<div id="content" class="columns <%= !content_for?(:sidebar) ? "sixteen" : "twelve omega" %>" data-hook>
+			<section class="newproduct bgwhite p-t-10 p-b-105">
+      	<%= yield %>
 			</section>
     </div>
 
