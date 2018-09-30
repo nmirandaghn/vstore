@@ -21,6 +21,7 @@
   <% end %>
 </div>
 
+<!--
 <% if products.any? %>
   <div id="products" class="inline product-listing row" data-hook>
     <% products.each do |product| %>
@@ -44,6 +45,39 @@
               </p>
             </div>
           <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% reset_cycle("classes") %>
+  </div>
+<% end %>
+-->
+
+<% if products.any? %>
+  <div id="products" class="inline product-listing row" data-hook>
+    <% products.each do |product| %>
+      <div class='col-sm-4 col-md-3'>
+        <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
+        <div id="product_<%= product.id %>" class="thumbnail <%= cycle("alpha", "secondary", "", "omega secondary", name: "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+          <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : [I18n.locale, current_currency, product]) do %>
+            
+            <div class="product-image">
+              <%= link_to image_tag(product.display_image.attachment(:small), itemprop: "image"), url, itemprop: 'url' %>
+            </div>
+
+            <div class='caption text-center'>
+              <p>
+                <%= link_to t('spree.add_to_cart'), url, class: 'btn btn-primary ' %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+        <div class="caption text-center p-b-28">
+          <%= link_to truncate(product.name, length: 50), url, class: 'block2-name dis-block s-text3 p-b-5', itemprop: "name", title: product.name %>
+
+          <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <span class="price selling" itemprop="price"><%= display_price(product) %>
+          </span>
         </div>
       </div>
     <% end %>

@@ -30,4 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  free_shipping: "Free shipping for standard order over $100"
+  featured: "Featured products"
+  catalog: "Catalog"
