@@ -1,6 +1,6 @@
 <div class="sec-title p-b-10">
   <h3 class="m-text5 t-center">
-    <%= t(:featured) %>
+    <%= t(:catalog) %>
   </h3>
 </div>
 <div data-hook="homepage_products">
@@ -10,12 +10,14 @@
 </div>
 <div class="sec-title p-b-10">
   <h3 class="m-text5 t-center">
-    <%= t(:catalog) %>
+    <%= t(:featured) %>
   </h3>
 </div>
-<div data-hook="homepage_products">
-  <% cache(cache_key_for_products) do %>
-    <%= render :partial => 'spree/shared/products', :locals => { :products => @products } %>
-  <% end %>
-</div>
 
+<section class="newproduct bgwhite p-t-45 p-b-105">
+  <div class="container">
+    <% cache(cache_key_for_products) do %>
+      <%= render :partial => 'spree/shared/featured', :locals => { :featured => @featured } %>
+    <% end %>
+  </div>
+</section>
