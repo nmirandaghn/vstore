@@ -1665,7 +1665,7 @@ li.sale-noti > a {
 }
 
 .block2-labelnew::before {
-  background-color: #66a8a6;
+  background-color: #337ab7;;
   content: 'New';
 }
 

@@ -14,7 +14,7 @@
   </h3>
 </div>
 
-<section class="newproduct bgwhite p-t-45 p-b-105">
+<section class="newproduct bgwhite p-b-10">
   <div class="container">
     <% cache(cache_key_for_products) do %>
       <%= render :partial => 'spree/shared/featured', :locals => { :featured => @featured } %>

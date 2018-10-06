@@ -58,19 +58,22 @@
     <% products.each do |product| %>
       <div class='col-sm-4 col-md-3'>
         <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
-        <div id="product_<%= product.id %>" class="thumbnail <%= cycle("alpha", "secondary", "", "omega secondary", name: "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-          <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : [I18n.locale, current_currency, product]) do %>
-            
-            <div class="product-image">
-              <%= link_to image_tag(product.display_image.attachment(:small), itemprop: "image"), url, itemprop: 'url' %>
-            </div>
+        <div id="product_<%= product.id %>" class="thumbnail <%= cycle("alpha", "secondary", "", "omega secondary", name: "classes") %> block2-img of-hidden pos-relative " data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+          
+          <div class='caption text-center'>
+            <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : [I18n.locale, current_currency, product]) do %>
+              
+              <div class="product-image">
+                <%= link_to image_tag(product.display_image.attachment(:product), itemprop: "image"), url, itemprop: 'url' %>
+              </div>
 
-            <div class='caption text-center'>
-              <p>
-                <%= link_to t('spree.add_to_cart'), url, class: 'btn btn-primary ' %>
-              </p>
-            </div>
-          <% end %>
+              <div class='block2-overlay trans-0-4'>
+                <div class="block2-btn-addcart w-size1 trans-0-4">
+                  <%= link_to t('spree.add_to_cart'), url, class: 'btn btn-primary ' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
         <div class="caption text-center p-b-28">
           <%= link_to truncate(product.name, length: 50), url, class: 'block2-name dis-block s-text3 p-b-5', itemprop: "name", title: product.name %>

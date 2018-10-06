@@ -1,36 +1,29 @@
 <% if featured.any? %>
   <div id="products" class="wrap-slick2" data-hook>
-    <div class="slick2">
+    <div >
       <% featured.each do |product| %>
-        <div class='item-slick2 p-l-15 p-r-15'>
-
-          <div class="block2">
-
-            <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
-
-            <div id="product_<%= product.id %>" class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-          
+        <div class='col-sm-4 col-md-3'>
+          <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
+          <div id="product_<%= product.id %>" class="thumbnail block2-img of-hidden pos-relative block2-labelnew" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+        
+            <div class='caption text-center'>
               <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : [I18n.locale, current_currency, product]) do %>
-                <%= link_to image_tag(product.display_image.attachment(:small), itemprop: "image"), url, itemprop: 'url' %>
+                <%= link_to image_tag(product.display_image.attachment(:product), itemprop: "image"), url, itemprop: 'url' %>
 
                 <div class="block2-overlay trans-0-4">
                   <div class="block2-btn-addcart w-size1 trans-0-4">
-                    <%= link_to t('spree.add_to_cart'), url, class: 'flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4' %>                
+                    <%= link_to t('spree.add_to_cart'), url, class: 'btn btn-primary' %>                
                   </div>
                 </div>
               <% end %>
-          
             </div>
-            
-            <div class="block2-txt p-t-20">
-              <%= link_to truncate(product.name, length: 50), url, class: 'block2-name dis-block s-text3 p-b-5', itemprop: "name", title: product.name %>
-              <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span class="price selling" itemprop="price"><%= display_price(product) %>
-              </span>
-            </div>
-
           </div>
-
+          <div class="caption text-center p-b-28">
+            <%= link_to truncate(product.name, length: 50), url, class: 'block2-name dis-block s-text3 p-b-5', itemprop: "name", title: product.name %>
+            <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <span class="price selling" itemprop="price"><%= display_price(product) %>
+            </span>
+          </div>
         </div>
       <% end %>
     </div>
